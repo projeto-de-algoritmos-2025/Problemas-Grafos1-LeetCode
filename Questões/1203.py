@@ -3,17 +3,17 @@ from typing import List
 
 class Solution:
     def sortItems(self, n: int, m: int, group: List[int], beforeItems: List[List[int]]) -> List[int]:
-        def topologicalSort(graph, in_degree):
-            queue = deque([node for node in range(len(in_degree)) if in_degree[node] == 0])
+        def topologicalSort(graph, grau_entrada):
+            fila = deque([no for no in range(len(grau_entrada)) if grau_entrada[no] == 0])
             result = []
-            while queue:
-                node = queue.popleft()
-                result.append(node)
-                for neighbor in graph[node]:
-                    in_degree[neighbor] -= 1
-                    if in_degree[neighbor] == 0:
-                        queue.append(neighbor)
-            return result if len(result) == len(in_degree) else []
+            while fila:
+                no = fila.popleft()
+                result.append(no)
+                for neighbor in graph[no]:
+                    grau_entrada[neighbor] -= 1
+                    if grau_entrada[neighbor] == 0:
+                        fila.append(neighbor)
+            return result if len(result) == len(grau_entrada) else []
 
         group_id = m
         for i in range(n):
@@ -21,32 +21,33 @@ class Solution:
                 group[i] = group_id
                 group_id += 1
 
-        itemGraph = defaultdict(list)
+        grafoItems = defaultdict(list)
         itemInDegree = [0] * n
         for i in range(n):
             for pre in beforeItems[i]:
-                itemGraph[pre].append(i)
+                grafoItems[pre].append(i)
                 itemInDegree[i] += 1
-        sortedItems = topologicalSort(itemGraph, itemInDegree)
-        if not sortedItems:
+        items_ord = topologicalSort(grafoItems, itemInDegree)
+        if not items_ord:
             return []
 
-        groupGraph = defaultdict(list)
+        grafoGrupos = defaultdict(list)
         groupInDegree = [0] * group_id
         for i in range(n):
             for pre in beforeItems[i]:
                 if group[i] != group[pre]:
-                    groupGraph[group[pre]].append(group[i])
+                    grafoGrupos[group[pre]].append(group[i])
                     groupInDegree[group[i]] += 1
-        sortedGroups = topologicalSort(groupGraph, groupInDegree)
-        if not sortedGroups:
+        grupos_ord = topologicalSort(grafoGrupos, groupInDegree)
+        if not grupos_ord:
             return []
 
         groupToItems = defaultdict(list)
-        for item in sortedItems:
+        for item in items_ord:
             groupToItems[group[item]].append(item)
 
         result = []
-        for grp in sortedGroups:
+        for grp in grupos_ord:
             result.extend(groupToItems[grp])
         return result
+
