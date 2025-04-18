@@ -1,7 +1,5 @@
 # Problemas-Grafos1-LeetCode
 Para desenvolver o conteúdo abordado no tópico de Grafos 1, o estudante selecionou três exercícios em um juiz online - o LeetCode -, sendo elas todas de nível difícil.
-<<<<<<< HEAD
-=======
 
 # Lista de Exercícios do LeetCode
 
@@ -33,4 +31,3 @@ Para desenvolver o conteúdo abordado no tópico de Grafos 1, o estudante seleci
 
 ## Apresentação 
 A apresentação da entrega pode ser visualizada.
->>>>>>> be83af5 (ajustando readme)
