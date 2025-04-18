@@ -8,13 +8,13 @@ class Solution:
             graph[u].append((v, cnt))
             graph[v].append((u, cnt))
 
-        heap = [(-maxMoves, 0)]
+        fila = [(-maxMoves, 0)]
         visitados = dict()
         subnodes = dict()
         result = 0
 
-        while heap:
-            moves_restantes, node = heapq.heappop(heap)
+        while fila:
+            moves_restantes, node = heapq.heappop(fila)
             moves_restantes = -moves_restantes
 
             if node in visitados:
@@ -30,7 +30,7 @@ class Solution:
                 subnodes[aresta] += reach
 
                 if vizinho not in visitados and moves_restantes > cnt:
-                    heapq.heappush(heap, (-(moves_restantes - cnt - 1), vizinho))
+                    heapq.heappush(fila, (-(moves_restantes - cnt - 1), vizinho))
 
         for u, v, cnt in edges:
             aresta = (min(u, v), max(u, v))
