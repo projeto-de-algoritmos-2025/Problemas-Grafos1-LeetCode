@@ -30,4 +30,4 @@ Para desenvolver o conteúdo abordado no tópico de Grafos 1, o estudante seleci
 **Pré-requisitos**: Interpretador python3<br>
 
 ## Apresentação 
-A apresentação da entrega pode ser visualizada.
+A apresentação da entrega pode ser visualizada: https://youtu.be/rTmD5DOfHpQ
